@@ -1,0 +1,22 @@
+{
+  "name": "jl-sql",
+  "version": "0.0.1",
+  "keywords": [
+    "sql",
+    "stream",
+    "cli"
+  ],
+  "author": "avz@nologin.ru",
+  "contributors": [],
+  "dependencies": {
+    "jl-sql-api": "0.0.3",
+    "node-getopt": "0.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "eslint-plugin-mocha": "^4.7.0"
+  },
+  "scripts": {
+    "test": "eslint ."
+  }
+}
