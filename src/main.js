@@ -12,6 +12,10 @@ cli.on('error', (err) => {
 	process.exit(1);
 });
 
+cli.on('warning', (err) => {
+	process.stderr.write(err.message + '\n');
+});
+
 try {
 	cli.run();
 

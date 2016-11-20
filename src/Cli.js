@@ -2,9 +2,10 @@
 
 const EventEmitter = require('events');
 const Getopt = require('node-getopt');
-const JlSqlApi = require('jl-sql-api');
 const CliError = require('./CliError');
-const DataSourceFileResolver = require('./DataSourceFileResolver');
+
+const Options = require('./Options');
+const Runner = require('./Runner');
 
 class Cli extends EventEmitter
 {
@@ -17,7 +18,8 @@ class Cli extends EventEmitter
 		this.stdout = stdout;
 
 		this.getopt = new Getopt([
-			['h', 'help', 'show this help']
+			['h', 'help', 'show this help'],
+			['I', 'ignore-json-error', 'ignore broken JSON']
 		]);
 
 		this.getopt.setHelp(
@@ -28,53 +30,49 @@ class Cli extends EventEmitter
 			+ 'See full documentation at https://github.com/avz/jl-sql\n'
 		);
 
-		this.getopt.bindHelp();
 		this.getopt.error(this.onArgumentError.bind(this));
+	}
+
+	parseOptions()
+	{
+		const getopt = this.getopt.parse(this.argv.slice(1));
+
+		if (getopt.options.help) {
+			this.throwUsage();
+		}
+
+		if (!getopt.argv.length) {
+			this.throwArgumentError('SQL expected');
+		}
+
+		if (getopt.argv.length > 1) {
+			this.throwArgumentError('too many arguments');
+		}
+
+		const options = new Options(getopt.argv[0]);
+
+		if (getopt.options['ignore-json-error']) {
+			options.ignoreJsonErrors = true;
+		}
+
+		return options;
 	}
 
 	run()
 	{
-		const options = this.getopt.parse(this.argv.slice(1));
+		const options = this.parseOptions();
 
-		if (options.options.h) {
-			this.throwUsage();
-		}
+		const runner = new Runner(options);
 
-		if (!options.argv.length) {
-			this.throwArgumentError('SQL expected');
-		}
-
-		if (options.argv.length > 1) {
-			this.throwArgumentError('too many arguments');
-		}
-
-		const api = new JlSqlApi({
-			dataSourceResolvers: [new DataSourceFileResolver]
+		runner.on('error', (err) => {
+			this.emit('error', err);
 		});
 
-		let query;
+		runner.on('warning', (warn) => {
+			this.emit('warning', warn);
+		});
 
-		try {
-			query = api.query(options.argv[0]);
-		} catch (err) {
-			throw new CliError('SQL syntax error: ' + err.message + '\n');
-		}
-
-		try {
-			/* eslint-disable newline-after-var */
-			const select = query
-				.fromJsonStream(this.stdin)
-				.toJsonStream(this.stdout)
-			;
-			/* eslint-enable newline-after-var */
-
-			select.on('error', (err) => {
-				this.emit('error', err);
-			});
-
-		} catch (err) {
-			throw new CliError(err.constructor.name + ': ' + err.stack + '\n');
-		}
+		runner.run(this.stdin, this.stdout);
 	}
 
 	throwUsage(code = 255)
