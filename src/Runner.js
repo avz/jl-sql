@@ -1,5 +1,6 @@
 'use strict';
 
+const util = require('util');
 const JlSqlApi = require('jl-sql-api');
 const EventEmitter = require('events');
 const DataSourceFileResolver = require('./DataSourceFileResolver');
@@ -16,7 +17,7 @@ class Runner extends EventEmitter
 		});
 	}
 
-	run(stdin, stdout)
+	run(stdin, stdout, stderr)
 	{
 		try {
 			const query = this.api.query(this.options.sql);
@@ -27,6 +28,11 @@ class Runner extends EventEmitter
 				.toJsonStream(stdout)
 			;
 			/* eslint-enable newline-after-var */
+
+			if (this.options.verbose) {
+				const explain = this.api.explain(select);
+				stderr.write(util.inspect(explain, {depth: 20}) + '\n');
+			}
 
 			select.on('error', (err) => {
 				this._errorHandler(err);

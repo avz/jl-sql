@@ -9,17 +9,19 @@ const Runner = require('./Runner');
 
 class Cli extends EventEmitter
 {
-	constructor(argv, stdin, stdout)
+	constructor(argv, stdin, stdout, stderr)
 	{
 		super();
 
 		this.argv = argv;
 		this.stdin = stdin;
 		this.stdout = stdout;
+		this.stderr = stderr;
 
 		this.getopt = new Getopt([
 			['h', 'help', 'show this help'],
-			['I', 'ignore-json-error', 'ignore broken JSON']
+			['I', 'ignore-json-error', 'ignore broken JSON'],
+			['v', 'verbose', 'display additional information']
 		]);
 
 		this.getopt.setHelp(
@@ -55,6 +57,10 @@ class Cli extends EventEmitter
 			options.ignoreJsonErrors = true;
 		}
 
+		if (getopt.options.verbose) {
+			options.verbose = true;
+		}
+
 		return options;
 	}
 
@@ -72,7 +78,7 @@ class Cli extends EventEmitter
 			this.emit('warning', warn);
 		});
 
-		runner.run(this.stdin, this.stdout);
+		runner.run(this.stdin, this.stdout, this.stderr);
 	}
 
 	throwUsage(code = 255)
