@@ -13,7 +13,8 @@ class Runner extends EventEmitter
 
 		this.options = options;
 		this.api = new JlSqlApi({
-			dataSourceResolvers: [new DataSourceFileResolver]
+			dataSourceResolvers: [new DataSourceFileResolver],
+			externalSort: true
 		});
 	}
 
