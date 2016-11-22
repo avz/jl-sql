@@ -34,6 +34,7 @@ class Runner extends EventEmitter
 
 			if (this.options.verbose) {
 				const explain = this.api.explain(select);
+
 				stderr.write(util.inspect(explain, {depth: 20}) + '\n');
 			}
 
