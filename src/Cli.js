@@ -21,7 +21,10 @@ class Cli extends EventEmitter
 		this.getopt = new Getopt([
 			['h', 'help', 'show this help'],
 			['I', 'ignore-json-error', 'ignore broken JSON'],
-			['v', 'verbose', 'display additional information']
+			['v', 'verbose', 'display additional information'],
+			['S', 'sort-external-buffer-size=SIZE', 'use SIZE bytes for `sort` memory buffer'],
+			['B', 'sort-in-memory-buffer-length=ROWS', 'save up to ROWS rows for in-memory sort'],
+			['T', 'temporary-directory=DIR', 'use DIR for temporaries, not $TMPDIR or /tmp']
 		]);
 
 		this.getopt.setHelp(
@@ -59,6 +62,24 @@ class Cli extends EventEmitter
 
 		if (getopt.options.verbose) {
 			options.verbose = true;
+		}
+
+		if (getopt.options['temporary-directory']) {
+			options.tmpDir = getopt.options['temporary-directory'];
+		}
+
+		options.sortOptions = {
+
+		};
+
+		if (getopt.options['sort-external-buffer-size']) {
+			options.sortOptions.bufferSize = parseInt(getopt.options['sort-external-buffer-size']);
+		}
+
+		if (getopt.options['sort-in-memory-buffer-length']) {
+			options.sortOptions.inMemoryBufferSize = parseInt(getopt.options['sort-in-memory-buffer-length']);
+		} else {
+			options.sortOptions.inMemoryBufferSize = 10000;
 		}
 
 		return options;

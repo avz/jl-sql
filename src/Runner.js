@@ -1,7 +1,7 @@
 'use strict';
 
 const util = require('util');
-const JlSqlApi = require('../../jl-sql-api');
+const JlSqlApi = require('jl-sql-api');
 const EventEmitter = require('events');
 const DataSourceFileResolver = require('./DataSourceFileResolver');
 
@@ -11,12 +11,18 @@ class Runner extends EventEmitter
 	{
 		super();
 
-		this.options = options;
+		const combinedOptions = JSON.parse(JSON.stringify(options));
+
+		combinedOptions.dataSourceResolvers = [new DataSourceFileResolver];
+		if (!combinedOptions.sortOptions) {
+			combinedOptions.sortOptions = {};
+		}
+
+		this.options = combinedOptions;
+
 		this.api = new JlSqlApi({
-			dataSourceResolvers: [new DataSourceFileResolver],
-			sortOptions: {
-				inMemoryBufferSize: 100000
-			}
+			sortOptions: combinedOptions.sortOptions,
+			tmpDir: combinedOptions.tmpDir
 		});
 	}
 
