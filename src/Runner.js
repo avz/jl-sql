@@ -11,7 +11,11 @@ class Runner extends EventEmitter
 	{
 		super();
 
+		this.binds = options.binds || {};
+
 		const combinedOptions = JSON.parse(JSON.stringify(options));
+
+		delete combinedOptions.binds;
 
 		combinedOptions.dataSourceResolvers = [new DataSourceFileResolver];
 		if (!combinedOptions.sortOptions) {
@@ -30,6 +34,16 @@ class Runner extends EventEmitter
 	{
 		try {
 			const query = this.api.query(this.options.sql);
+
+			for (const bindName in this.binds) {
+				const bindValue = this.binds[bindName];
+
+				if (bindValue instanceof Array) {
+					query.bind('::' + bindName, bindValue);
+				} else {
+					query.bind(':' + bindName, bindValue);
+				}
+			}
 
 			/* eslint-disable newline-after-var */
 			const select = query

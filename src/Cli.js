@@ -24,7 +24,8 @@ class Cli extends EventEmitter
 			['v', 'verbose', 'display additional information'],
 			['S', 'sort-external-buffer-size=SIZE', 'use SIZE bytes for `sort` memory buffer'],
 			['B', 'sort-in-memory-buffer-length=ROWS', 'save up to ROWS rows for in-memory sort'],
-			['T', 'temporary-directory=DIR', 'use DIR for temporaries, not $TMPDIR or /tmp']
+			['T', 'temporary-directory=DIR', 'use DIR for temporaries, not $TMPDIR or /tmp'],
+			['b', 'bind=BIND=VALUE+', 'bind valiable']
 		]);
 
 		this.getopt.setHelp(
@@ -82,7 +83,52 @@ class Cli extends EventEmitter
 			options.sortOptions.inMemoryBufferSize = 10000;
 		}
 
+		if (getopt.options.bind) {
+			options.binds = this.parseBinds(getopt.options.bind);
+		}
+
 		return options;
+	}
+
+	parseBinds(binds)
+	{
+		const map = {};
+
+		for (const def of binds) {
+			const m = def.match(/^(::?)(.*?)=(.*)$/);
+
+			if (!m) {
+				this.throwArgumentError('wrong bind definition: ' + def);
+			}
+
+			const name = m[2];
+			const value = m[3];
+			const isArray = m[1] === '::';
+
+			if (isArray) {
+				if (name in map) {
+					if (!(map[name] instanceof Array)) {
+						this.throwArgumentError('bind name ::' + name + ' must not be mixed with :' + name);
+					}
+
+					map[name].push(value);
+				} else {
+					map[name] = [value];
+				}
+			} else {
+				if (name in map) {
+					if (map[name] instanceof Array) {
+						this.throwArgumentError('bind name ::' + name + ' must not be mixed with :' + name);
+					}
+
+					this.throwArgumentError('bind name :' + name + ' redefinition');
+				}
+
+				map[name] = value;
+			}
+		}
+
+		return map;
 	}
 
 	run()
