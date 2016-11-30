@@ -70,6 +70,48 @@ will output
 {"key":1,"value":5}
 ```
 
+### `JOIN`
+
+We will need 2 files
+
+```
+% cat data.json
+```
+
+```
+{"key": 2, "value": 2}
+{"key": 1, "value": 3}
+{"key": 3, "value": 6}
+{"key": 3, "value": 4}
+{"key": 1, "value": 5}
+{"value": 7}
+{"key": null, "value": 8}
+```
+
+```
+% cat keyInfo.json
+```
+
+```
+{"key": 1, "title": "first"}
+{"key": 2, "title": "second"}
+{"key": 3, "title": "third"}
+```
+
+```
+% cat data.json | jl-sql 'SELECT key, @keyInfo.title LEFT JOIN `keyInfo.json` ON @keyInfo.key = key'
+```
+
+```
+{}
+{"key":1,"title":"first"}
+{"key":1,"title":"first"}
+{"key":2,"title":"second"}
+{"key":3,"title":"third"}
+{"key":3,"title":"third"}
+{"key":null}
+```
+
 ## Usage
 ```
 % jl-sql --help
