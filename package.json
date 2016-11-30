@@ -1,6 +1,6 @@
 {
   "name": "jl-sql",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "keywords": [
     "sql",
     "stream",
@@ -9,7 +9,7 @@
   "author": "avz@nologin.ru",
   "contributors": [],
   "dependencies": {
-    "jl-sql-api": "^0.1.1",
+    "jl-sql-api": "^1.0.0",
     "node-getopt": "0.2.3"
   },
   "devDependencies": {
