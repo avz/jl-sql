@@ -2,6 +2,20 @@
 
 CLI frontend for https://github.com/avz/node-jl-sql-api
 
+* [Installation](#installation)
+* [Examples](#examples)
+  * [`GROUP BY`](#group-by)
+  * [`ORDER BY`](#order-by)
+  * [`WHERE`](#where)
+  * [`JOIN`](#join)
+* [Usage](#usage)
+
+## Installation
+
+```
+% sudo npm install -g jl-sql
+```
+
 ## Examples
 
 Test dataset
