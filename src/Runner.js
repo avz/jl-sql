@@ -1,7 +1,7 @@
 'use strict';
 
 const util = require('util');
-const JlSqlApi = require('../../jl-sql-api');
+const JlSqlApi = require('jl-sql-api');
 const EventEmitter = require('events');
 const DataSourceFileResolver = require('./DataSourceFileResolver');
 
