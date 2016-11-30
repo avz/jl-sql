@@ -54,13 +54,13 @@ Test dataset
 
 Use binding
 ```
-cat data.json | jl-sql --bind :key=1 'SELECT * WHERE key = :key'
+% cat data.json | jl-sql --bind :key=1 'SELECT * WHERE key = :key'
 ```
 
 or same thing inline
 
 ```
-cat data.json | jl-sql 'SELECT * WHERE key = 1'
+% cat data.json | jl-sql 'SELECT * WHERE key = 1'
 ```
 
 will output
