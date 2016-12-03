@@ -8,7 +8,9 @@ const CliError = require('./CliError');
 const cli = new Cli(process.argv.slice(1), process.stdin, process.stdout, process.stderr);
 
 cli.on('error', (err) => {
-	process.stderr.write(err.message + '\n');
+	const message = err.message || err.stack;
+
+	process.stderr.write(message + '\n');
 	process.exit(1);
 });
 
