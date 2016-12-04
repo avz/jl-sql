@@ -113,7 +113,7 @@ We will need 2 files
 ```
 
 ```
-% cat data.json | jl-sql 'SELECT key, @keyInfo.title LEFT JOIN `keyInfo.json` ON @keyInfo.key = key'
+% cat data.json | jl-sql --bind :info=keyInfo.json 'SELECT key, @info.title LEFT JOIN [:info] ON @info.key = key'
 ```
 
 ```
