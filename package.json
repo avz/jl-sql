@@ -1,6 +1,6 @@
 {
   "name": "jl-sql",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -10,7 +10,7 @@
   "author": "avz@nologin.ru",
   "contributors": [],
   "dependencies": {
-    "jl-sql-api": "^2.0.0",
+    "jl-sql-api": "^2.3.0",
     "node-getopt": "0.2.3"
   },
   "devDependencies": {

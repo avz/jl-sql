@@ -46,11 +46,22 @@ class Runner extends EventEmitter
 				}
 			}
 
+			let select;
+
 			/* eslint-disable newline-after-var */
-			const select = query
-				.fromJsonStream(stdin)
-				.toJsonStream(stdout)
-			;
+			if (query.select.ast.table) {
+				// quore has FROM statement
+
+				select = query
+					.fromEmptyStream()
+					.toJsonStream(stdout)
+				;
+			} else {
+				select = query
+					.fromJsonStream(stdin)
+					.toJsonStream(stdout)
+				;
+			}
 			/* eslint-enable newline-after-var */
 
 			if (this.options.verbose) {
