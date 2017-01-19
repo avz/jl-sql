@@ -25,7 +25,8 @@ class Cli extends EventEmitter
 			['S', 'sort-external-buffer-size=SIZE', 'use SIZE bytes for `sort` memory buffer'],
 			['B', 'sort-in-memory-buffer-length=ROWS', 'save up to ROWS rows for in-memory sort'],
 			['T', 'temporary-directory=DIR', 'use DIR for temporaries, not $TMPDIR or /tmp'],
-			['b', 'bind=BIND=VALUE+', 'bind valiable']
+			['b', 'bind=BIND=VALUE+', 'bind valiable'],
+			['', 'version', 'show version information']
 		]);
 
 		this.getopt.setHelp(
@@ -33,6 +34,7 @@ class Cli extends EventEmitter
 			+ 'OPTIONS:\n'
 			+ '[[OPTIONS]]\n'
 			+ '\n'
+			+ 'Version: ' + this.versionString() + '\n\n'
 			+ 'See full documentation at https://github.com/avz/jl-sql\n'
 		);
 
@@ -45,6 +47,10 @@ class Cli extends EventEmitter
 
 		if (getopt.options.help) {
 			this.throwUsage();
+		}
+
+		if (getopt.options.version) {
+			this.throwVersion();
 		}
 
 		if (!getopt.argv.length) {
@@ -151,6 +157,19 @@ class Cli extends EventEmitter
 	throwUsage(code = 255)
 	{
 		this.throwArgumentError(null);
+	}
+
+	versionString()
+	{
+		const myVersion = require('../package').version;
+		const apiVersion = require('jl-sql-api').version || 'X.X.X';
+
+		return 'jl-sql v' + myVersion + ' (jl-sql-api v' + apiVersion + ')';
+	}
+
+	throwVersion()
+	{
+		throw new CliError(this.versionString() + '\n', 0);
 	}
 
 	getUsage()
