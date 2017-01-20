@@ -1,3 +1,10 @@
+## `v1.2.0` (2017-01-20)
+
+* LIKE and ILIKE (case-insensitive LIKE) was added
+* Automatical type coercion in date comparisons like `ts > NOW() - INTERVAL 1 DAY`
+* Option `--version`
+
+
 ## `v1.1.0` (2017-01-19)
 
 * `SELECT ... FROM dataSource` support
