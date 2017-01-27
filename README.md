@@ -12,6 +12,8 @@ CLI frontend for https://github.com/avz/node-jl-sql-api
 
 ## Installation
 
+**Warning: Node.js v6+ required**
+
 ```
 % sudo npm install -g jl-sql
 ```
