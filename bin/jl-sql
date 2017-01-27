@@ -7,8 +7,7 @@
 const semver = require('semver');
 
 if (semver.lt(process.versions.node, '6.0.0')) {
-	process.stderr.write('Error: NodeJS v6+ required, but ' + process.version + ' found\n');
-	process.exit(1);
+	require('../transpiled/main-node4.js');
+} else {
+	require('../src/main.js');
 }
-
-require('../src/main.js');
