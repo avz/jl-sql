@@ -1,5 +1,7 @@
 'use strict';
 
+require('babel-polyfill');
+
 if (!Buffer.from) {
 	Buffer.from = function(a, b, c) {
 		if (arguments.length === 1) {
@@ -18,4 +20,4 @@ if (!Buffer.alloc) {
 	};
 }
 
-require('../transpiled/main-node4-transpilled.js');
+require('./main.js');
