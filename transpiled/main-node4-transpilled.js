@@ -20950,7 +20950,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 },{}],459:[function(require,module,exports){
 module.exports={
   "name": "jl-sql",
-  "version": "1.2.5",
+  "version": "1.2.7",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
