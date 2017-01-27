@@ -1,7 +1,7 @@
 'use strict';
 
 const EventEmitter = require('events');
-const Getopt = require('node-getopt');
+const Getopt = require('node-getopt/lib/getopt.js');
 const CliError = require('./CliError');
 
 const Options = require('./Options');
