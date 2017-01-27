@@ -1,6 +1,6 @@
 {
   "name": "jl-sql",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -11,7 +11,8 @@
   "contributors": [],
   "dependencies": {
     "jl-sql-api": "^2.3.0",
-    "node-getopt": "0.2.3"
+    "node-getopt": "0.2.3",
+    "semver": "^5.3.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
@@ -19,5 +20,8 @@
   },
   "scripts": {
     "test": "eslint ."
+  },
+  "engines": {
+    "node": ">=6"
   }
 }

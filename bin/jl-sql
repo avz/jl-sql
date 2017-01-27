@@ -2,4 +2,13 @@
 
 'use strict';
 
+/* eslint-disable no-process-exit */
+
+const semver = require('semver');
+
+if (semver.lt(process.versions.node, '6.0.0')) {
+	process.stderr.write('Error: NodeJS v6+ required, but ' + process.version + ' found\n');
+	process.exit(1);
+}
+
 require('../src/main.js');
