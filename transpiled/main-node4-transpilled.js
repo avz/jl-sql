@@ -13925,7 +13925,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 },{}],164:[function(require,module,exports){
 module.exports={
   "name": "jl-sql",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -13951,7 +13951,8 @@ module.exports={
   },
   "scripts": {
     "test": "eslint . && sh ./test/all.sh",
-    "build": "browserify --node -o transpiled/main-node4-transpilled.js -t [ babelify --global ] src/main-node4.js"
+    "prepublish": "npm build",
+    "build": "browserify --node -o transpiled/main-node4-transpilled.js -t [ babelify --global ] src/main.js"
   },
   "engines": {
     "node": ">=4"
@@ -14412,27 +14413,6 @@ var Runner = function (_EventEmitter) {
 module.exports = Runner;
 
 },{"./DataSourceFileResolver":167,"events":undefined,"jl-sql-api":2,"util":undefined}],170:[function(require,module,exports){
-'use strict';
-
-if (!Buffer.from) {
-	Buffer.from = function () {
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
-
-		return new (Function.prototype.bind.apply(Buffer, [null].concat(args)))();
-	};
-}
-
-if (!Buffer.alloc) {
-	Buffer.alloc = function (size) {
-		return new Buffer(size);
-	};
-}
-
-require('./main.js');
-
-},{"./main.js":171}],171:[function(require,module,exports){
 'use strict';
 
 /* eslint-disable no-process-exit */

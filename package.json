@@ -26,8 +26,8 @@
   },
   "scripts": {
     "test": "eslint . && sh ./test/all.sh",
-    "prepublish": "npm build",
-    "build": "browserify --node -o transpiled/main-node4-transpilled.js -t [ babelify --global ] src/main-node4.js"
+    "prepublish": "npm run build",
+    "build": "browserify --node -o transpiled/main-node4-transpilled.js -t [ babelify --global ] src/main.js"
   },
   "engines": {
     "node": ">=4"
