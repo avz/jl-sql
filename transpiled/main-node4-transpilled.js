@@ -13935,7 +13935,7 @@ module.exports={
   "author": "avz@nologin.ru",
   "contributors": [],
   "dependencies": {
-    "jl-sql-api": "^2.6.0",
+    "jl-sql-api": "^2.6.1",
     "node-getopt": "0.2.3",
     "semver": "^5.3.0"
   },
