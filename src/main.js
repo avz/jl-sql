@@ -5,19 +5,27 @@
 const util = require('util');
 const Cli = require('./Cli');
 const CliError = require('./CliError');
-const cli = new Cli(process.argv.slice(1), process.stdin, process.stdout, process.stderr);
+var cli;
 
-cli.on('error', (err) => {
+const errHandler = (err) => {
 	const message = err.message || err.stack;
 
-	if (cli.options.verbose) {
+	if (cli && cli.options.verbose) {
 		process.stderr.write((err.stack || (err.name + ': ' + message)) + '\n');
 	} else {
-		process.stderr.write(err.name + ': ' + message + '\n');
+		process.stderr.write(message + '\n');
 	}
 
 	process.exit(1);
-});
+};
+
+try {
+	cli = new Cli(process.argv.slice(1), process.stdin, process.stdout, process.stderr);
+} catch (err) {
+	errHandler(err);
+}
+
+cli.on('error', errHandler);
 
 cli.on('warning', (err) => {
 	process.stderr.write(err.message + '\n');
