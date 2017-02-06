@@ -170,12 +170,12 @@ class Cli extends EventEmitter
 
 	throwVersion()
 	{
-		throw new CliError(this.versionString() + '\n', 0);
+		throw new CliError(this.versionString(), 0);
 	}
 
 	getUsage()
 	{
-		return this.getopt.getHelp();
+		return this.getopt.getHelp().replace(/\s+$/, '');
 	}
 
 	throwArgumentError(message = null)
