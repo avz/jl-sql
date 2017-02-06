@@ -10,7 +10,12 @@ const cli = new Cli(process.argv.slice(1), process.stdin, process.stdout, proces
 cli.on('error', (err) => {
 	const message = err.message || err.stack;
 
-	process.stderr.write(err.name + ': ' + message + '\n');
+	if (cli.options.verbose) {
+		process.stderr.write((err.stack || (err.name + ': ' + message)) + '\n');
+	} else {
+		process.stderr.write(err.name + ': ' + message + '\n');
+	}
+
 	process.exit(1);
 });
 

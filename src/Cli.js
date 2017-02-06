@@ -13,6 +13,7 @@ class Cli extends EventEmitter
 	{
 		super();
 
+		this.options = new Options(argv[0]);
 		this.argv = argv;
 		this.stdin = stdin;
 		this.stdout = stdout;
@@ -39,6 +40,8 @@ class Cli extends EventEmitter
 		);
 
 		this.getopt.error(this.onArgumentError.bind(this));
+
+		this.options = this.parseOptions();
 	}
 
 	parseOptions()
@@ -139,9 +142,7 @@ class Cli extends EventEmitter
 
 	run()
 	{
-		const options = this.parseOptions();
-
-		const runner = new Runner(options);
+		const runner = new Runner(this.options);
 
 		runner.on('error', (err) => {
 			this.emit('error', err);
