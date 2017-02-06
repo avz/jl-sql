@@ -21592,7 +21592,7 @@ module.exports = Terminator;
 },{}],468:[function(require,module,exports){
 module.exports={
   "name": "jl-sql",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -21820,12 +21820,12 @@ var Cli = function (_EventEmitter) {
 	}, {
 		key: 'throwVersion',
 		value: function throwVersion() {
-			throw new CliError(this.versionString() + '\n', 0);
+			throw new CliError(this.versionString(), 0);
 		}
 	}, {
 		key: 'getUsage',
 		value: function getUsage() {
-			return this.getopt.getHelp();
+			return this.getopt.getHelp().replace(/\s+$/, '');
 		}
 	}, {
 		key: 'throwArgumentError',
