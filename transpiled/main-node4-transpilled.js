@@ -21592,7 +21592,7 @@ module.exports = Terminator;
 },{}],468:[function(require,module,exports){
 module.exports={
   "name": "jl-sql",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -21602,7 +21602,7 @@ module.exports={
   "author": "avz@nologin.ru",
   "contributors": [],
   "dependencies": {
-    "jl-sql-api": "2.6.2",
+    "jl-sql-api": "2.6.3",
     "node-getopt": "0.2.3",
     "semver": "^5.3.0"
   },
