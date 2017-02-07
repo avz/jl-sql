@@ -7725,25 +7725,25 @@ module.exports={
   "_args": [
     [
       {
-        "raw": "jl-sql-api@2.6.2",
+        "raw": "jl-sql-api@2.6.3",
         "scope": null,
         "escapedName": "jl-sql-api",
         "name": "jl-sql-api",
-        "rawSpec": "2.6.2",
-        "spec": "2.6.2",
+        "rawSpec": "2.6.3",
+        "spec": "2.6.3",
         "type": "version"
       },
       "/Users/avz/my/jl-sql"
     ]
   ],
-  "_from": "jl-sql-api@2.6.2",
-  "_id": "jl-sql-api@2.6.2",
+  "_from": "jl-sql-api@2.6.3",
+  "_id": "jl-sql-api@2.6.3",
   "_inCache": true,
   "_location": "/jl-sql-api",
   "_nodeVersion": "7.4.0",
   "_npmOperationalInternal": {
     "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/jl-sql-api-2.6.2.tgz_1486394882417_0.6513759281951934"
+    "tmp": "tmp/jl-sql-api-2.6.3.tgz_1486460021797_0.8742234783712775"
   },
   "_npmUser": {
     "name": "avz",
@@ -7752,21 +7752,21 @@ module.exports={
   "_npmVersion": "4.0.5",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "jl-sql-api@2.6.2",
+    "raw": "jl-sql-api@2.6.3",
     "scope": null,
     "escapedName": "jl-sql-api",
     "name": "jl-sql-api",
-    "rawSpec": "2.6.2",
-    "spec": "2.6.2",
+    "rawSpec": "2.6.3",
+    "spec": "2.6.3",
     "type": "version"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.6.2.tgz",
-  "_shasum": "1c666c6a9024a2042e29796c9eb9d7d2d16155b8",
+  "_resolved": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.6.3.tgz",
+  "_shasum": "84a4da89d3d45daeec1fb2d5f2d15654d47d02e9",
   "_shrinkwrap": null,
-  "_spec": "jl-sql-api@2.6.2",
+  "_spec": "jl-sql-api@2.6.3",
   "_where": "/Users/avz/my/jl-sql",
   "author": {
     "name": "avz@nologin.ru"
@@ -7786,13 +7786,13 @@ module.exports={
   },
   "directories": {},
   "dist": {
-    "shasum": "1c666c6a9024a2042e29796c9eb9d7d2d16155b8",
-    "tarball": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.6.2.tgz"
+    "shasum": "84a4da89d3d45daeec1fb2d5f2d15654d47d02e9",
+    "tarball": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.6.3.tgz"
   },
   "engines": {
     "node": ">=6"
   },
-  "gitHead": "c5a555c6c07354729d9bb3f525bdf0631c72b06a",
+  "gitHead": "2b6d9c37074678ba60accf22ed9a498d158af869",
   "homepage": "https://github.com/avz/node-jl-sql-api#readme",
   "keywords": [
     "sql",
@@ -7818,7 +7818,7 @@ module.exports={
     "test": "eslint . && mocha --recursive"
   },
   "tonicExampleFilename": "./examples/join.js",
-  "version": "2.6.2"
+  "version": "2.6.3"
 }
 
 },{}],302:[function(require,module,exports){
@@ -9505,7 +9505,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var DataSource = require('./DataSource');
 var ImplementationRequired = require('./error/ImplementationRequired');
 var JlTransformsChain = require('./stream/JlTransformsChain');
-var LinesSplitter = require('./stream/LinesSplitter');
+var JsonSplitter = require('./stream/JsonSplitter');
 var ChunkJoiner = require('./stream/ChunkJoiner');
 var JsonParser = require('./stream/JsonParser');
 
@@ -9539,7 +9539,7 @@ var DataSourceResolver = function () {
 
 					return new DataSource(objectsStream);
 				} else {
-					var _objectsStream = new JlTransformsChain([stream, new LinesSplitter(), new JsonParser()]);
+					var _objectsStream = new JlTransformsChain([stream, new JsonSplitter(), new JsonParser()]);
 
 					return new DataSource(_objectsStream);
 				}
@@ -9578,7 +9578,7 @@ var DataSourceResolver = function () {
 
 module.exports = DataSourceResolver;
 
-},{"./DataSource":320,"./error/ImplementationRequired":358,"./stream/ChunkJoiner":447,"./stream/JlTransformsChain":453,"./stream/JsonParser":455,"./stream/LinesSplitter":459}],323:[function(require,module,exports){
+},{"./DataSource":320,"./error/ImplementationRequired":358,"./stream/ChunkJoiner":447,"./stream/JlTransformsChain":453,"./stream/JsonParser":455,"./stream/JsonSplitter":456}],323:[function(require,module,exports){
 'use strict';
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21592,7 +21592,7 @@ module.exports = Terminator;
 },{}],468:[function(require,module,exports){
 module.exports={
   "name": "jl-sql",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
