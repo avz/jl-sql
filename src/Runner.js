@@ -4,6 +4,7 @@ const util = require('util');
 const JlSqlApi = require('jl-sql-api');
 const EventEmitter = require('events');
 const DataSourceFileResolver = require('./DataSourceFileResolver');
+const dataFunctions = require('./dataFunction/index');
 
 class Runner extends EventEmitter
 {
@@ -27,7 +28,8 @@ class Runner extends EventEmitter
 		this.api = new JlSqlApi({
 			sortOptions: combinedOptions.sortOptions,
 			tmpDir: combinedOptions.tmpDir,
-			dataSourceResolvers: combinedOptions.dataSourceResolvers
+			dataSourceResolvers: combinedOptions.dataSourceResolvers,
+			dataFunctions: dataFunctions
 		});
 	}
 
