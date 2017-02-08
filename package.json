@@ -9,6 +9,11 @@
   ],
   "author": "avz@nologin.ru",
   "contributors": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avz/jl-sql.git"
+  },
   "dependencies": {
     "jl-sql-api": "2.7.1",
     "node-getopt": "0.2.3",
