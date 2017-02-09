@@ -10,6 +10,12 @@ const createDescription = (ctor) => {
 
 module.exports = {
 	read: {
-		DUAL: createDescription(require('./read/DUAL'))
+		DUAL: createDescription(require('./read/DUAL')),
+		STDIN: createDescription(require('./read/STDIN')),
+		FILE: createDescription(require('./read/FILE'))
+	},
+	transform: {
+		JSON: createDescription(require('./transform/JSON')),
+		CSV: createDescription(require('./transform/CSV'))
 	}
 };

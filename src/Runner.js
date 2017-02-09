@@ -29,7 +29,11 @@ class Runner extends EventEmitter
 			sortOptions: combinedOptions.sortOptions,
 			tmpDir: combinedOptions.tmpDir,
 			dataSourceResolvers: combinedOptions.dataSourceResolvers,
-			dataFunctions: dataFunctions
+			dataFunctions: dataFunctions,
+			dataFunctionsDefaults: {
+				read: 'INTERNAL',
+				transform: 'JSON'
+			}
 		});
 	}
 
