@@ -4,7 +4,7 @@ const JsonSplitter = require('jl-sql-api/src/stream/JsonSplitter');
 const JsonParser = require('jl-sql-api/src/stream/JsonParser');
 
 const JSON_ = (source, options) => {
-	return new [
+	return [
 		new JsonSplitter,
 		new JsonParser
 	];

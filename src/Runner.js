@@ -31,7 +31,7 @@ class Runner extends EventEmitter
 			dataSourceResolvers: combinedOptions.dataSourceResolvers,
 			dataFunctions: dataFunctions,
 			dataFunctionsDefaults: {
-				read: 'INTERNAL',
+				read: 'FILE',
 				transform: 'JSON'
 			}
 		});
