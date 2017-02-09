@@ -33,6 +33,10 @@ const CsvParser = function(options) {
 		}
 	}
 
+	if (!('columns' in csvParseOptions)) {
+		csvParseOptions.columns = true;
+	}
+
 	const chain = [csvParse(csvParseOptions), new ChunkJoiner];
 
 	if (opts.encoding) {

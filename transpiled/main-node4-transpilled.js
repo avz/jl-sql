@@ -23408,6 +23408,10 @@ var CsvParser = function CsvParser(options) {
 		}
 	}
 
+	if (!('columns' in csvParseOptions)) {
+		csvParseOptions.columns = true;
+	}
+
 	var chain = [csvParse(csvParseOptions), new ChunkJoiner()];
 
 	if (opts.encoding) {
