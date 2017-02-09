@@ -18,6 +18,6 @@ class DUAL extends Readable
 	}
 }
 
-DUAL.outputType = 'objects';
+DUAL.outputType = 'array_of_rows';
 
 module.exports = DUAL;

@@ -7,6 +7,6 @@ const CSV = (source, options) => {
 };
 
 CSV.inputType = 'binary';
-CSV.outputType = 'objects';
+CSV.outputType = 'array_of_rows';
 
 module.exports = CSV;

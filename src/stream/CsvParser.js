@@ -1,6 +1,5 @@
 'use strict';
 
-const JlTrasformsChain = require('jl-sql-api/src/stream/JlTransformsChain');
 const ChunkJoiner = require('jl-sql-api/src/stream/ChunkJoiner');
 const Iconv = require('./Iconv');
 
@@ -25,7 +24,7 @@ const CsvParser = function(options) {
 
 	for (const name in opts) {
 		if (!(name in optionsMapping)) {
-			throw new Error('Unknown CSV() options: ' + name);
+			throw new Error('Unknown CSV() option: ' + name);
 		}
 
 		if (optionsMapping[name]) {
@@ -43,7 +42,7 @@ const CsvParser = function(options) {
 		chain.unshift(new Iconv(opts.encoding, 'utf-8'));
 	}
 
-	return new JlTrasformsChain(chain);
+	return chain;
 };
 
 module.exports = CsvParser;
