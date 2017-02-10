@@ -132,7 +132,7 @@ We will need 2 files
 ## CSV support
 
 ```
-% cat data.json
+% cat data.csv
 ```
 
 ```
