@@ -1,4 +1,4 @@
-# `jl-sql`
+# `jl-sql` - SQL for JSON and CSV files
 
 CLI frontend for https://github.com/avz/node-jl-sql-api
 
@@ -8,6 +8,7 @@ CLI frontend for https://github.com/avz/node-jl-sql-api
   * [`ORDER BY`](#order-by)
   * [`WHERE`](#where)
   * [`JOIN`](#join)
+* [CSV support](#csv-support)
 * [Usage](#usage)
 
 ## Installation
@@ -127,6 +128,72 @@ We will need 2 files
 {"key":3,"title":"third"}
 {"key":null}
 ```
+
+## CSV support
+
+```
+% cat data.json
+```
+
+```
+key,value
+2,2
+1,3
+3,6
+3,4
+1,5
+,7
+```
+
+From stdin:
+```
+cat data.csv | jl-sql 'SELECT * FROM CSV(STDIN())'
+```
+
+From file:
+```
+jl-sql -b :data=data.csv 'SELECT * FROM CSV({:data})'
+```
+
+Output:
+```
+{"key":"2","value":"2"}
+{"key":"1","value":"3"}
+{"key":"3","value":"6"}
+{"key":"3","value":"4"}
+{"key":"1","value":"5"}
+{"key":"","value":"7"}
+```
+
+### Options
+
+You can customize parsing by options:
+
+```
+cat data.csv | jl-sql 'SELECT * FROM CSV(STDIN(), {columns: ["a", "b"], encoding: "cp1251"})'
+```
+
+```
+{"a":"key","b":"value"}
+{"a":"2","b":"2"}
+{"a":"1","b":"3"}
+{"a":"3","b":"6"}
+{"a":"3","b":"4"}
+{"a":"1","b":"5"}
+{"a":"","b":"7"}
+```
+
+List of available options:
+
+ - `detectTypes` - if `true`, the parser will attempt to convert input string to native types
+ - `detectDates` - if `true`, the parser will attempt to convert input string to dates. It requires the "auto_parse" option
+ - `columns` - list of fields as an array. By default autodiscovered in the first CSV line
+ - `delimiter` - field delimiter, one character only. Defaults to `,` (comma)
+ - `escape` - escape character, one character only. Defaults to `"` (double quote)
+ - `ltrim` - if `true`, ignore whitespace immediately following the delimiter. Does not remove whitespace in a quoted field.
+ - `rtrim` - if `true`, ignore whitespace immediately preceding the delimiter. Does not remove whitespace in a quoted field.
+ - `skipEmptyLines` - Don't generate records for lines containing empty column values (column matching `/\s*/`). Disable by default
+ - `encoding` - input encoding
 
 ## Usage
 ```
