@@ -1,3 +1,7 @@
+## `v1.3.0` (2017-02-10)
+
+* CSV support: ``SELECT * FROM CSV(`/path/to/file.csv`, {delimiter: ";"})``
+
 ## `v1.2.0` (2017-01-20)
 
 * LIKE and ILIKE (case-insensitive LIKE) was added
