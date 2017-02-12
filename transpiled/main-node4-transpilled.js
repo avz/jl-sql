@@ -134,7 +134,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var util = __webpack_require__(87);
-var ProgramError = __webpack_require__(13);
 var ImplementationRequired = __webpack_require__(58);
 
 var Node = function () {
@@ -270,7 +269,13 @@ var Node = function () {
 
 						return value.slice().map(clone);
 					} else {
-						throw new ProgramError('Non-cloneable object');
+						var _copy = {};
+
+						for (var name in value) {
+							_copy[name] = clone(value[name]);
+						}
+
+						return _copy;
 					}
 				} else {
 					return value;
@@ -24833,25 +24838,25 @@ module.exports = {
 	"_args": [
 		[
 			{
-				"raw": "jl-sql-api@2.8.0",
+				"raw": "jl-sql-api@2.8.1",
 				"scope": null,
 				"escapedName": "jl-sql-api",
 				"name": "jl-sql-api",
-				"rawSpec": "2.8.0",
-				"spec": "2.8.0",
+				"rawSpec": "2.8.1",
+				"spec": "2.8.1",
 				"type": "version"
 			},
 			"/Users/avz/my/jl-sql"
 		]
 	],
-	"_from": "jl-sql-api@2.8.0",
-	"_id": "jl-sql-api@2.8.0",
+	"_from": "jl-sql-api@2.8.1",
+	"_id": "jl-sql-api@2.8.1",
 	"_inCache": true,
 	"_location": "/jl-sql-api",
 	"_nodeVersion": "7.4.0",
 	"_npmOperationalInternal": {
 		"host": "packages-18-east.internal.npmjs.com",
-		"tmp": "tmp/jl-sql-api-2.8.0.tgz_1486902633750_0.8338689403608441"
+		"tmp": "tmp/jl-sql-api-2.8.1.tgz_1486920715220_0.3032345147803426"
 	},
 	"_npmUser": {
 		"name": "avz",
@@ -24860,21 +24865,21 @@ module.exports = {
 	"_npmVersion": "4.0.5",
 	"_phantomChildren": {},
 	"_requested": {
-		"raw": "jl-sql-api@2.8.0",
+		"raw": "jl-sql-api@2.8.1",
 		"scope": null,
 		"escapedName": "jl-sql-api",
 		"name": "jl-sql-api",
-		"rawSpec": "2.8.0",
-		"spec": "2.8.0",
+		"rawSpec": "2.8.1",
+		"spec": "2.8.1",
 		"type": "version"
 	},
 	"_requiredBy": [
 		"/"
 	],
-	"_resolved": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.8.0.tgz",
-	"_shasum": "79f7ec93dad1f391b33febd5f0befb754392275b",
+	"_resolved": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.8.1.tgz",
+	"_shasum": "05b07d25dc71871719c06fc216e4b896c6788147",
 	"_shrinkwrap": null,
-	"_spec": "jl-sql-api@2.8.0",
+	"_spec": "jl-sql-api@2.8.1",
 	"_where": "/Users/avz/my/jl-sql",
 	"author": {
 		"name": "avz@nologin.ru"
@@ -24894,13 +24899,13 @@ module.exports = {
 	},
 	"directories": {},
 	"dist": {
-		"shasum": "79f7ec93dad1f391b33febd5f0befb754392275b",
-		"tarball": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.8.0.tgz"
+		"shasum": "05b07d25dc71871719c06fc216e4b896c6788147",
+		"tarball": "https://registry.npmjs.org/jl-sql-api/-/jl-sql-api-2.8.1.tgz"
 	},
 	"engines": {
 		"node": ">=6"
 	},
-	"gitHead": "b27a7ceadaa57dba9abda35a381c9c39be289180",
+	"gitHead": "b9db4735060b737d31bb91d171df54bf94a4fe2b",
 	"homepage": "https://github.com/avz/node-jl-sql-api#readme",
 	"keywords": [
 		"sql",
@@ -24926,7 +24931,7 @@ module.exports = {
 		"test": "eslint . && mocha --recursive"
 	},
 	"tonicExampleFilename": "./examples/join.js",
-	"version": "2.8.0"
+	"version": "2.8.1"
 };
 
 /***/ }),
@@ -24935,7 +24940,7 @@ module.exports = {
 
 module.exports = {
 	"name": "jl-sql",
-	"version": "1.4.0",
+	"version": "1.4.1",
 	"bin": "./bin/jl-sql",
 	"keywords": [
 		"sql",
@@ -24952,7 +24957,7 @@ module.exports = {
 	"dependencies": {
 		"csv-parse": "^1.2.0",
 		"iconv": "^2.2.1",
-		"jl-sql-api": "2.8.0",
+		"jl-sql-api": "2.8.1",
 		"node-getopt": "0.2.3",
 		"semver": "^5.3.0"
 	},
