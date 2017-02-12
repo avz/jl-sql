@@ -1,5 +1,7 @@
 # `jl-sql` - SQL for JSON and CSV files
 
+[![Build Status](https://travis-ci.org/avz/jl-sql.svg?branch=master)](https://travis-ci.org/avz/jl-sql)
+
 CLI frontend for https://github.com/avz/node-jl-sql-api
 
 * [Installation](#installation)
