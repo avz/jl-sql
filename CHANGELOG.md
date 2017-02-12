@@ -1,3 +1,9 @@
+## `v1.4.0` (2017-02-12)
+
+* aliases now accessible in WHERE and GROUP BY:
+  - `SELECT field AS alias WHERE alias = 123`
+  - `SELECT field AS alias GROUP BY alias`
+
 ## `v1.3.0` (2017-02-10)
 
 * CSV support: ``SELECT * FROM CSV(`/path/to/file.csv`, {delimiter: ";"})``
