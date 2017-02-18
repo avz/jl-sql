@@ -95,11 +95,11 @@ class Cli extends EventEmitter
 		};
 
 		if (getopt.options['sort-external-buffer-size']) {
-			options.sortOptions.bufferSize = parseInt(getopt.options['sort-external-buffer-size']);
+			options.sortOptions.bufferSize = parseInt(getopt.options['sort-external-buffer-size'], 0);
 		}
 
 		if (getopt.options['sort-in-memory-buffer-length']) {
-			options.sortOptions.inMemoryBufferSize = parseInt(getopt.options['sort-in-memory-buffer-length']);
+			options.sortOptions.inMemoryBufferSize = parseInt(getopt.options['sort-in-memory-buffer-length'], 0);
 		} else {
 			options.sortOptions.inMemoryBufferSize = 10000;
 		}
