@@ -1,45 +1,23 @@
 'use strict';
 
-const ChunkJoiner = require('jl-sql-api/src/stream/ChunkJoiner');
 const Iconv = require('./Iconv');
-
-const csvParse = require('csv-parse');
+const CsvStreamParser = require('@avz/csv').StreamParser;
 
 const CsvParser = function(options) {
-	const optionsMapping = {
-		detectTypes: 'auto_parse',
-		detectDates: 'auto_parse_date',
-		columns: 'columns',
-		delimiter: 'delimiter',
-		escape: 'escape',
-		ltrim: 'ltrim',
-		rtrim: 'rtrim',
-		skipEmptyLines: 'skip_empty_lines',
-		from: 'from',
-		encoding: null
-	};
-
 	const opts = options || {};
-	const csvParseOptions = {};
+	const encoding = opts.encoding;
+	const parserOptions = {};
 
-	for (const name in opts) {
-		if (!(name in optionsMapping)) {
-			throw new Error('Unknown CSV() option: ' + name);
-		}
+	Object.assign(parserOptions, opts);
 
-		if (optionsMapping[name]) {
-			csvParseOptions[optionsMapping[name]] = opts[name];
-		}
-	}
+	parserOptions.batch = true;
 
-	if (!('columns' in csvParseOptions)) {
-		csvParseOptions.columns = true;
-	}
+	delete parserOptions.encoding;
 
-	const chain = [csvParse(csvParseOptions), new ChunkJoiner];
+	const chain = [new CsvStreamParser(parserOptions)];
 
-	if (opts.encoding) {
-		chain.unshift(new Iconv(opts.encoding, 'utf-8'));
+	if (encoding) {
+		chain.unshift(new Iconv(encoding, 'utf-8'));
 	}
 
 	return chain;

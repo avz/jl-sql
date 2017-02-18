@@ -15,7 +15,7 @@
     "url": "https://github.com/avz/jl-sql.git"
   },
   "dependencies": {
-    "csv-parse": "^1.2.0",
+    "@avz/csv": "^0.1.0",
     "iconv": "^2.2.1",
     "jl-sql-api": "2.8.1",
     "node-getopt": "0.2.3",
