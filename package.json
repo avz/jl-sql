@@ -35,7 +35,7 @@
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "test": "eslint . && (test \"$(echo \"$npm_config_node_version\" | cut -d. -f1)\" -gt 6 && mocha --recursive || true) && sh ./test/functional/all.sh",
+    "test": "eslint . && (test \"$(echo \"$npm_config_node_version\" | cut -d. -f1)\" -ge 6 && mocha --recursive || true) && sh ./test/functional/all.sh",
     "coverage": "istanbul cover --report html _mocha -- --recursive",
     "prepublish": "npm run build",
     "build": "webpack",
