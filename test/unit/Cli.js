@@ -45,18 +45,20 @@ describe('Cli', () => {
 		/**
 		 *
 		 * @param {string[]} args
+		 * @param {string} sql
 		 * @returns {Options}
 		 */
-		const parse = (args) => {
-			const c = new Cli(['jl-sql'].concat(args).concat(['SELECT 1']));
+		const parse = (args, sql = 'SELECT 1') => {
+			const c = new Cli(['jl-sql'].concat(args).concat([sql]));
 
 			return c.parseOptions();
 		};
 
 		it('defaults', () => {
-			const o = parse([]);
+			const o = parse([], 'SELECT 123');
 
 			assert.ok(o instanceof Options);
+			assert.strictEqual(o.sql, 'SELECT 123');
 			assert.strictEqual(o.ignoreJsonErrors, false);
 			assert.strictEqual(o.verbose, false);
 			assert.strictEqual(o.tmpDir, null);
