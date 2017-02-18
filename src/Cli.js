@@ -9,6 +9,14 @@ const Runner = require('./Runner');
 
 class Cli extends EventEmitter
 {
+	/**
+	 *
+	 * @param {string[]} argv
+	 * @param {Readable} stdin
+	 * @param {Writable} stdout
+	 * @param {Writable} stderr
+	 * @returns {Cli}
+	 */
 	constructor(argv, stdin, stdout, stderr)
 	{
 		super();
@@ -44,6 +52,10 @@ class Cli extends EventEmitter
 		this.options = this.parseOptions();
 	}
 
+	/**
+	 * @private
+	 * @returns {Options}
+	 */
 	parseOptions()
 	{
 		const getopt = this.getopt.parse(this.argv.slice(1));
@@ -99,6 +111,11 @@ class Cli extends EventEmitter
 		return options;
 	}
 
+	/**
+	 *
+	 * @param {string[]} binds
+	 * @returns {object}
+	 */
 	parseBinds(binds)
 	{
 		const map = {};
@@ -140,6 +157,10 @@ class Cli extends EventEmitter
 		return map;
 	}
 
+	/**
+	 *
+	 * @returns {undefined}
+	 */
 	run()
 	{
 		const runner = new Runner(this.options);
