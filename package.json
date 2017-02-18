@@ -28,14 +28,18 @@
     "babel-preset-es2015": "^6.22.0",
     "eslint": "^3.10.2",
     "eslint-plugin-mocha": "^4.7.0",
+    "istanbul": "^0.4.5",
     "json-loader": "^0.5.4",
+    "mocha": "^3.2.0",
     "node-loader": "^0.6.0",
     "webpack": "^2.2.1"
   },
   "scripts": {
-    "test": "eslint . && sh ./test/all.sh",
+    "test": "eslint . && (test \"$(echo \"$npm_config_node_version\" | cut -d. -f1)\" -gt 6 && mocha --recursive || true) && sh ./test/functional/all.sh",
+    "coverage": "istanbul cover --report html _mocha -- --recursive",
     "prepublish": "npm run build",
-    "build": "webpack"
+    "build": "webpack",
+    "env": "env"
   },
   "engines": {
     "node": ">=4"

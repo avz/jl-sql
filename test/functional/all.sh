@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd "$(dirname "$0")/../.."
+
 repeat() {
 	# `yes` has strange behaviour in OSX: SIGPIPE is ignored eventually
 	n=$1
