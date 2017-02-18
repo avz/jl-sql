@@ -7,6 +7,11 @@ const Cli = require('./Cli');
 const CliError = require('./CliError');
 var cli;
 
+/**
+ *
+ * @param {Error} err
+ * @returns {undefined}
+ */
 const errHandler = (err) => {
 	const message = err.message || err.stack;
 

@@ -3,6 +3,10 @@
 const Iconv = require('./Iconv');
 const CsvStreamParser = require('@avz/csv').StreamParser;
 
+/**
+ * @param {object} options
+ * @return {Transform[]}
+ */
 const CsvParser = function(options) {
 	const opts = options || {};
 	const encoding = opts.encoding;

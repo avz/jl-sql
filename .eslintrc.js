@@ -64,7 +64,7 @@ module.exports = {
 		"id-blacklist": "error",
 		"id-length": "off",
 		"id-match": "error",
-		"indent": ["error", "tab"],
+		"indent": ["error", "tab", {"SwitchCase": 1}],
 		"init-declarations": "off",
 		"jsx-quotes": "error",
 		"key-spacing": ["error", {"beforeColon": false, "afterColon": true}],
@@ -210,12 +210,17 @@ module.exports = {
 		"prefer-spread": "error",
 		"prefer-template": "off",
 		"quote-props": "off",
-		"quotes": ["error", "single"],
-		"radix": [
+		"radix": ["error", "always"],
+		"require-jsdoc": [
 			"error",
-			"as-needed"
+			{
+				"require": {
+					"FunctionDeclaration": true,
+					"MethodDefinition": true,
+					"ArrowFunctionExpression": true
+				}
+			}
 		],
-		"require-jsdoc": "off",
 		"rest-spread-spacing": [
 			"error",
 			"never"
@@ -247,7 +252,13 @@ module.exports = {
 			"error",
 			"never"
 		],
-		"valid-jsdoc": "off",
+		"valid-jsdoc": [
+			"error",
+			{
+				"requireReturnDescription": false,
+				"requireParamDescription": false
+			}
+		],
 		"vars-on-top": "off",
 		"wrap-regex": "error",
 		"yield-star-spacing": "error",

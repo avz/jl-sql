@@ -176,11 +176,20 @@ class Cli extends EventEmitter
 		runner.run(this.stdin, this.stdout, this.stderr);
 	}
 
+	/**
+	 *
+	 * @param {number} code
+	 * @returns {undefined}
+	 */
 	throwUsage(code = 255)
 	{
 		this.throwArgumentError(null);
 	}
 
+	/**
+	 *
+	 * @returns {string}
+	 */
 	versionString()
 	{
 		const myVersion = require('../package').version;
@@ -189,16 +198,29 @@ class Cli extends EventEmitter
 		return 'jl-sql v' + myVersion + ' (jl-sql-api v' + apiVersion + ')';
 	}
 
+	/**
+	 *
+	 * @returns {undefined}
+	 */
 	throwVersion()
 	{
 		throw new CliError(this.versionString(), 0);
 	}
 
+	/**
+	 *
+	 * @returns {string}
+	 */
 	getUsage()
 	{
 		return this.getopt.getHelp().replace(/\s+$/, '');
 	}
 
+	/**
+	 *
+	 * @param {string} message
+	 * @returns {undefined}
+	 */
 	throwArgumentError(message = null)
 	{
 		let m = '';
@@ -212,11 +234,21 @@ class Cli extends EventEmitter
 		throw new CliError(m, 255);
 	}
 
+	/**
+	 *
+	 * @param {string} message
+	 * @returns {undefined}
+	 */
 	throwRuntimeError(message)
 	{
 		throw new CliError(message, 1);
 	}
 
+	/**
+	 *
+	 * @param {string} err
+	 * @returns {undefined}
+	 */
 	onArgumentError(err)
 	{
 		this.throwArgumentError(err.message);

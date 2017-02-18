@@ -4,6 +4,12 @@ const Readable = require('stream').Readable;
 
 class DUAL extends Readable
 {
+	/**
+	 *
+	 * @param {string} location
+	 * @param {object|null} options
+	 * @returns {DUAL}
+	 */
 	constructor(location, options)
 	{
 		super({objectMode: true});
@@ -11,6 +17,10 @@ class DUAL extends Readable
 		this.rows = options.rows || [{}];
 	}
 
+	/**
+	 *
+	 * @returns {undefined}
+	 */
 	_read()
 	{
 		this.push(this.rows);

@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * @param {Function} ctor
+ * @returns {object}
+ */
 const createDescription = (ctor) => {
 	return {
 		ctor: ctor,

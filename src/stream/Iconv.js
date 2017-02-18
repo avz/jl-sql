@@ -5,6 +5,12 @@ const Transform = require('stream').Transform;
 
 class Iconv extends Transform
 {
+	/**
+	 *
+	 * @param {string} from
+	 * @param {string} to
+	 * @returns {Iconv}
+	 */
 	constructor(from, to)
 	{
 		super();
@@ -16,6 +22,13 @@ class Iconv extends Transform
 		});
 	}
 
+	/**
+	 *
+	 * @param {Buffer} chunk
+	 * @param {string} enc
+	 * @param {Function} cb
+	 * @returns {undefined}
+	 */
 	_transform(chunk, enc, cb)
 	{
 		this.iconv.write(chunk);
@@ -23,6 +36,11 @@ class Iconv extends Transform
 		cb();
 	}
 
+	/**
+	 *
+	 * @param {Function} cb
+	 * @returns {undefined}
+	 */
 	_flush(cb)
 	{
 		this.iconv.end();

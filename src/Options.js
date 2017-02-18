@@ -2,6 +2,11 @@
 
 class Options
 {
+	/**
+	 *
+	 * @param {string} sql
+	 * @returns {Options}
+	 */
 	constructor(sql)
 	{
 		this.ignoreJsonErrors = false;

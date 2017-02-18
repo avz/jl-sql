@@ -8,6 +8,11 @@ const dataFunctions = require('./dataFunction/index');
 
 class Runner extends EventEmitter
 {
+	/**
+	 *
+	 * @param {Options} options
+	 * @returns {Runner}
+	 */
 	constructor(options)
 	{
 		super();
@@ -37,6 +42,13 @@ class Runner extends EventEmitter
 		});
 	}
 
+	/**
+	 *
+	 * @param {Readable} stdin
+	 * @param {Writable} stdout
+	 * @param {Writable} stderr
+	 * @returns {undefined}
+	 */
 	run(stdin, stdout, stderr)
 	{
 		try {
@@ -85,6 +97,11 @@ class Runner extends EventEmitter
 		}
 	}
 
+	/**
+	 *
+	 * @param {Error} err
+	 * @returns {undefined}
+	 */
 	_errorHandler(err)
 	{
 		if (this.options.ignoreJsonErrors && (err instanceof JlSqlApi.exceptions.JsonParsingError)) {

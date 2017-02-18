@@ -6,6 +6,10 @@ const DataSourceResolver = require('jl-sql-api').DataSourceResolver;
 
 class DataSourceFileResolver extends DataSourceResolver
 {
+	/**
+	 * @param {string} location
+	 * @returns {Readable|null}
+	 */
 	resolve(location)
 	{
 		if (location.length !== 1) {
@@ -15,6 +19,11 @@ class DataSourceFileResolver extends DataSourceResolver
 		return fs.createReadStream(location[0]);
 	}
 
+	/**
+	 *
+	 * @param {string[]} location
+	 * @returns {string|null}
+	 */
 	extractAlias(location)
 	{
 		if (location.length !== 1) {

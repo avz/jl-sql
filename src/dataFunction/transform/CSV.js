@@ -1,7 +1,11 @@
 'use strict';
 
 const CsvParser = require('../../stream/CsvParser');
-
+/**
+ * @param {DataSource} source
+ * @param {object|null} options
+ * @returns {CsvParser}
+ */
 const CSV = (source, options) => {
 	return new CsvParser(options);
 };
