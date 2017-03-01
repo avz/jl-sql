@@ -1,3 +1,7 @@
+## `v1.5.0` (2017-02-12)
+
+* CSV speedup (migration to `@avz/csv` parser)
+
 ## `v1.4.0` (2017-02-12)
 
 * aliases now accessible in WHERE and GROUP BY:

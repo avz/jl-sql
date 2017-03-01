@@ -187,11 +187,10 @@ cat data.csv | jl-sql 'SELECT * FROM CSV(STDIN(), {columns: ["a", "b"], encoding
 
 List of available options:
 
- - `detectTypes` - if `true`, the parser will attempt to convert input string to native types
+ - `detectNumbers` - if `true`, the parser will attempt to convert input string to native types
  - `detectDates` - if `true`, the parser will attempt to convert input string to dates. It requires the "auto_parse" option
  - `columns` - list of fields as an array. By default autodiscovered in the first CSV line
  - `delimiter` - field delimiter, one character only. Defaults to `,` (comma)
- - `escape` - escape character, one character only. Defaults to `"` (double quote)
  - `ltrim` - if `true`, ignore whitespace immediately following the delimiter. Does not remove whitespace in a quoted field.
  - `rtrim` - if `true`, ignore whitespace immediately preceding the delimiter. Does not remove whitespace in a quoted field.
  - `skipEmptyLines` - Don't generate records for lines containing empty column values (column matching `/\s*/`). Disable by default
