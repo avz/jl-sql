@@ -1,6 +1,6 @@
 {
   "name": "jl-sql",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",

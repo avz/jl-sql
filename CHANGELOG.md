@@ -1,4 +1,4 @@
-## `v1.5.0` (2017-02-12)
+## `v1.5.0` (2017-03-01)
 
 * CSV speedup (migration to `@avz/csv` parser)
 
