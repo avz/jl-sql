@@ -1,10 +1,12 @@
 'use strict';
 
+const path = require('path');
+
 module.exports = {
 	entry: './src/main-node4.js',
 	target: 'node',
 	output: {
-		path: './transpiled',
+		path: path.join(__dirname, 'transpiled'),
 		filename: 'main-node4-transpilled.js'
 	},
 	externals: [
