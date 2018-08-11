@@ -21,7 +21,7 @@ const CsvParser = function(options) {
 	const chain = [new CsvStreamParser(parserOptions)];
 
 	if (encoding) {
-		chain.unshift(new Iconv(encoding, 'utf-8'));
+		chain.unshift(new Iconv(encoding));
 	}
 
 	return chain;

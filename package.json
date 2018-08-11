@@ -1,6 +1,6 @@
 {
   "name": "jl-sql",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "bin": "./bin/jl-sql",
   "keywords": [
     "sql",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@avz/csv": "^0.1.0",
-    "iconv": "^2.2.1",
+    "iconv-lite": "^0.4.23",
     "jl-sql-api": "2.8.1",
     "node-getopt": "0.2.3",
     "semver": "^5.5.0"

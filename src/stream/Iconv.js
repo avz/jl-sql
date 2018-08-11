@@ -1,6 +1,6 @@
 'use strict';
 
-const iconv = require('iconv');
+const iconv = require('iconv-lite');
 const Transform = require('stream').Transform;
 
 class Iconv extends Transform
@@ -8,14 +8,13 @@ class Iconv extends Transform
 	/**
 	 *
 	 * @param {string} from
-	 * @param {string} to
 	 * @returns {Iconv}
 	 */
-	constructor(from, to)
+	constructor(from)
 	{
 		super();
 
-		this.iconv = new iconv.Iconv(from, to);
+		this.iconv = new iconv.decodeStream(from);
 
 		this.iconv.on('data', chunk => {
 			this.push(chunk);
