@@ -30,6 +30,6 @@
     "env": "env"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   }
 }
