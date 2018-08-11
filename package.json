@@ -21,9 +21,9 @@
     "node-getopt": "0.2.3"
   },
   "devDependencies": {
-	"mocha": "^5.2.0",
-    "eslint": "^3.19.0",
-    "eslint-plugin-mocha": "^5.1.0"
+    "eslint": "^5.3.0",
+    "eslint-plugin-mocha": "^5.1.0",
+    "mocha": "^5.2.0"
   },
   "scripts": {
     "test": "eslint . && mocha --recursive && sh ./test/functional/all.sh",
