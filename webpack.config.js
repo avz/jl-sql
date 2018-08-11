@@ -9,11 +9,6 @@ module.exports = {
 		path: path.join(__dirname, 'transpiled'),
 		filename: 'main-node4-transpilled.js'
 	},
-	externals: [
-		{
-			iconv: 'commonjs iconv'
-		}
-	],
 	module: {
 		loaders: [
 			{test: /\.json$/, loader: 'json-loader'},

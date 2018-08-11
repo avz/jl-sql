@@ -2,7 +2,7 @@
 
 const assert = require('assert');
 const CsvParser = require('../../../src/stream/CsvParser');
-const iconv = require('iconv');
+const iconv = require('iconv-lite');
 
 describe('CsvParser', () => {
 	const transform = (options, input, onEnd) => {
@@ -48,9 +48,7 @@ describe('CsvParser', () => {
 
 		it('encoding', (done) => {
 			const conv = (string) => {
-				const ic = new iconv.Iconv('utf-8', 'cp1251');
-
-				return ic.convert(string);
+				return iconv.encode(string, 'cp1251');
 			};
 
 			transform({encoding: 'cp1251'}, conv('привет,мир\nфу,бар'), (rows) => {
