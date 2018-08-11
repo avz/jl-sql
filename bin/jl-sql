@@ -2,12 +2,4 @@
 
 'use strict';
 
-/* eslint-disable no-process-exit */
-
-const semver = require('semver');
-
-if (semver.lt(process.versions.node, '6.0.0')) {
-	require('../transpiled/main-node4-transpilled.js');
-} else {
-	require('../src/main.js');
-}
+require('../src/main.js');
